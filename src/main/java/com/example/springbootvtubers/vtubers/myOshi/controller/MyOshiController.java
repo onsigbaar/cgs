@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 @CrossOrigin(allowedHeaders = "Content-type")
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/my-oshi")
+@RequestMapping("api/v1/my-oshis")
 @PreAuthorize("isAuthenticated()")
 public class MyOshiController {
     private final MyOshiService service;
@@ -33,7 +33,7 @@ public class MyOshiController {
     // LOGGER FROM SLF4j
     private static final Logger LOGGER = LoggerFactory.getLogger(MyOshiController.class);
     // LOGGER FROM LOMBOK SLF4j
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "${APP_CLIENTURL}")
     @GetMapping
     public List<MyOshiDto> getMyOshis(Pageable pageable) {
         int toSkip = pageable.getPageSize() * pageable.getPageNumber();
